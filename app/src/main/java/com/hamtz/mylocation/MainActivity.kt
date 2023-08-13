@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvLatitude: TextView
     private lateinit var tvLongitude: TextView
     private lateinit var mMap: GoogleMap
-//
-//    private var locLatitude : Double = 0.0
-//    private var locLongitude : Double =0.0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,40 +35,12 @@ class MainActivity : AppCompatActivity() {
         tvLatitude = findViewById(R.id.tv_latitude)
         tvLongitude = findViewById(R.id.tv_logitude)
 
-//        val mapFragment = supportFragmentManager.findFragmentById(
-//            R.id.map_fragment
-//        ) as? SupportMapFragment
-//        mapFragment?.getMapAsync { googleMap ->
-//            addMarkers(googleMap)
-//        }
-
-
         getCurrentLocation()
     }
 
     private val places: List<Place> by lazy {
         PlacesReader(this).read()
     }
-
-//    private fun addMarkers(googleMap: GoogleMap) {
-//
-//        mMap = googleMap
-//
-//        // Add a marker in Sydney and move the camera
-////        val myLocation = LatLng(-3.8436519,119.8176858)
-////        var locLatitude = location.latitude
-//        val myLocation = LatLng(locLatitude,locLongitude)
-//        mMap.addMarker(MarkerOptions().position(myLocation).title("Lokasi"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
-//        Toast.makeText(this,""+locLatitude+"  "+locLongitude,Toast.LENGTH_SHORT).show()
-////        places.forEach { place ->
-////            val marker = googleMap.addMarker(
-////                MarkerOptions()
-////                    .title(place.name)
-////                    .position(place.latLng)
-////            )
-////        }
-//    }
 
     private fun getCurrentLocation() {
         if(checkPermissions()){
@@ -129,7 +97,6 @@ class MainActivity : AppCompatActivity() {
 
         val myLocation = LatLng(latitude,longitude)
         mMap.addMarker(MarkerOptions().position(myLocation).title("Lokasi"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation,20.0f))
         Toast.makeText(this,""+latitude+"  "+longitude,Toast.LENGTH_SHORT).show()
         places.forEach { place ->
